@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Inter", ui-sans-serif, system-ui;
+
+  /* Dark premium banking palette (HSL triplets) */
+  --background: 222 47% 5%;
+  --foreground: 210 40% 98%;
+
+  --card: 222 40% 8%;
+  --card-foreground: 210 40% 98%;
+
+  --primary: 214 100% 56%;
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 217 33% 14%;
+  --secondary-foreground: 210 40% 98%;
+
+  --muted: 217 33% 12%;
+  --muted-foreground: 215 20% 65%;
+
+  --accent: 199 89% 55%;
+  --accent-foreground: 210 40% 98%;
+
+  --border: 217 33% 18%;
+  --input: 217 33% 16%;
+  --ring: 214 100% 56%;
+
+  --success: 152 69% 45%;
+  --warning: 38 92% 55%;
+  --danger: 0 72% 55%;
+
+  --radius: 0.9rem;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Ambient animated backdrop */
+.app-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background:
+    radial-gradient(60% 50% at 15% 10%, hsl(214 100% 30% / 0.28), transparent 60%),
+    radial-gradient(50% 45% at 85% 15%, hsl(199 89% 40% / 0.22), transparent 60%),
+    radial-gradient(55% 55% at 50% 100%, hsl(224 76% 30% / 0.25), transparent 60%),
+    hsl(var(--background));
+}
+
+.app-backdrop::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background-image:
+    linear-gradient(hsl(214 100% 56% / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(214 100% 56% / 0.04) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black, transparent 75%);
+}
+
+.orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(60px);
+  opacity: 0.5;
+}
+
+/* Glassmorphism */
+.glass {
+  background: linear-gradient(
+    145deg,
+    hsl(217 33% 16% / 0.55),
+    hsl(222 40% 9% / 0.55)
+  );
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid hsl(210 40% 98% / 0.08);
+}
+
+.glass-strong {
+  background: hsl(222 44% 9% / 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid hsl(210 40% 98% / 0.1);
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, #eaf3ff 0%, #6db3ff 45%, #2f7bff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gradient-border {
+  position: relative;
+  background-clip: padding-box;
+}
+.gradient-border::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(120deg, hsl(214 100% 56% / 0.6), transparent 40%, hsl(199 89% 55% / 0.5));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(222 40% 8%);
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(217 33% 24%);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(214 100% 45%);
+}
+
+/* Focus visibility, never remove focus outlines entirely */
+:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@layer utilities {
+  .container-1440 {
+    width: 100%;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-1440 {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    .container-1440 {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+}

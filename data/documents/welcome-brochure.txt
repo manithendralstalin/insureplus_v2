@@ -1,0 +1,7 @@
+InsurePlus — Welcome Brochure
+==============================
+
+Thank you for choosing InsurePlus. This document is served by the
+/api/documents endpoint as a sample legitimate download.
+
+Try: /api/documents?file=welcome-brochure.txt
